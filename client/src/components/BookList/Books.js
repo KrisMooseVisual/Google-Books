@@ -17,7 +17,6 @@ class Books extends Component {
     searchBtn = (event) => {
         event.preventDefault();
         const { searchBox } = this.state;
-        // console.log(e.target.value);
         this.setState({ searchBox: searchBox })
         console.log(searchBox)
         this.runAPI();
@@ -28,7 +27,7 @@ class Books extends Component {
         .get("https://www.googleapis.com/books/v1/volumes?q=" + this.state.searchBox)
 
         .then((data) => {
-            this.setState({ books: [data]})
+            this.setState({ books: [...data.data.items]})
             console.log(data);
         })
     }
